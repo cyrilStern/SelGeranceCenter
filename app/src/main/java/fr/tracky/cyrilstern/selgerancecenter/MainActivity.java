@@ -1,25 +1,22 @@
 package fr.tracky.cyrilstern.selgerancecenter;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 import java.util.ArrayList;
@@ -30,6 +27,10 @@ import fr.tracky.cyrilstern.selgerancecenter.viewAdaptateur.CardApplication;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onStart() {
@@ -42,9 +43,7 @@ public class MainActivity extends AppCompatActivity
         }
         this.getSharedPreferences("fr.tracky.cyrilstern.selgerancecenter.LOGIN_FILE", 0).edit().clear().apply();
     }
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,13 +77,13 @@ public class MainActivity extends AppCompatActivity
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        CardApplication cardApplication = new CardApplication("image1.png","","","","","image2.png");
-        CardApplication cardApplication2 = new CardApplication("image1.png","","","","","image2.png");
+        CardApplication cardApplication = new CardApplication("image1.png", "", "", "image2.png", "", "image2.png");
+        CardApplication cardApplication2 = new CardApplication("image1.png", "", "", "image2.png", "", "image2.png");
         List<CardApplication> listCard = new ArrayList<>();
         listCard.add(cardApplication);
         listCard.add(cardApplication2);
         // specify an adapter (see also next example)
-        mAdapter = new CardAdaptateur(listCard);
+        mAdapter = new CardAdaptateur(listCard, this);
         mRecyclerView.setAdapter(mAdapter);
     }
 
