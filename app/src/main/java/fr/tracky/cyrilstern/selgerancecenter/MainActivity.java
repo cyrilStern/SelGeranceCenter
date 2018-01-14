@@ -19,13 +19,18 @@ import android.view.Window;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import fr.tracky.cyrilstern.selgerancecenter.entities.FactoryType;
+import fr.tracky.cyrilstern.selgerancecenter.services.Util;
 import fr.tracky.cyrilstern.selgerancecenter.viewAdaptateur.CardAdaptateur;
 import fr.tracky.cyrilstern.selgerancecenter.viewAdaptateur.CardApplication;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    @Inject
+    Util util;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -49,15 +54,13 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        MainApplication.app.getDaggerMainApplication_mainComponent().inject(this);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_view_card_application);
 
         // use this setting to improve performance if you know that changes
@@ -67,11 +70,17 @@ public class MainActivity extends AppCompatActivity
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        CardApplication cardApplication = new CardApplication("image1.png", "", FactoryType.PHONE_CALL.getActivityName(), "image2.png", "", FactoryType.SMS_SEND.getActivityName());
-        CardApplication cardApplication2 = new CardApplication("image1.png", "", FactoryType.SINISTER_DECLARATION.getActivityName(), "image2.png", "", FactoryType.SINISTER_DECLARATION.getActivityName());
+        CardApplication cardApplication = new CardApplication(R.color.Blue400, "call the center", FactoryType.PHONE_CALL.getActivityName(), R.color.Blue900, "take a photo", FactoryType.SMS_SEND.getActivityName());
+        CardApplication cardApplication2 = new CardApplication(R.color.Blue500, "declare sinister", FactoryType.ACCOUNT_CONSULTATION.getActivityName(), R.color.Blue700, "lanch", FactoryType.ACCOUNT_CONSULTATION.getActivityName());
+        CardApplication cardApplication3 = new CardApplication(R.color.Blue500, "send sms", FactoryType.ACCOUNT_CONSULTATION.getActivityName(), R.color.Blue700, "dame", FactoryType.ACCOUNT_CONSULTATION.getActivityName());
+        CardApplication cardApplication4 = new CardApplication(R.color.Blue900, "contrats", FactoryType.ACCOUNT_CONSULTATION.getActivityName(), R.color.Blue700, "blanche", FactoryType.ACCOUNT_CONSULTATION.getActivityName());
+
         List<CardApplication> listCard = new ArrayList<>();
         listCard.add(cardApplication);
         listCard.add(cardApplication2);
+        listCard.add(cardApplication3);
+        listCard.add(cardApplication4);
+
         // specify an adapter (see also next example)
         mAdapter = new CardAdaptateur(listCard, this);
         mRecyclerView.setAdapter(mAdapter);

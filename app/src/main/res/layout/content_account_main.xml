@@ -5,13 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="fr.tracky.cyrilstern.selgerancecenter.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_view_card_application"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    tools:context="fr.tracky.cyrilstern.selgerancecenter.viewAdaptateur.Account_main"
+    tools:showIn="@layout/activity_account_main">
 
 </android.support.constraint.ConstraintLayout>

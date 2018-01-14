@@ -5,15 +5,15 @@ package fr.tracky.cyrilstern.selgerancecenter.viewAdaptateur;
  */
 
 public class CardApplication {
-    private String backGroundImageRight;
+    private int backGroundImageRight;
     private String BackgroundColorRight;
     private String textApplicationRight;
 
-    private String backGroundImageLeft;
+    private int backGroundImageLeft;
     private String BackgroundColorLeft;
     private String textApplicationLeft;
 
-    public CardApplication(String backGroundImageRight, String backgroundColorRight, String textApplicationRight, String backGroundImageLeft, String backgroundColorLeft, String textApplicationLeft) {
+    public CardApplication(int backGroundImageRight, String backgroundColorRight, String textApplicationRight, int backGroundImageLeft, String backgroundColorLeft, String textApplicationLeft) {
         this.backGroundImageRight = backGroundImageRight;
         BackgroundColorRight = backgroundColorRight;
         this.textApplicationRight = textApplicationRight;
@@ -25,11 +25,11 @@ public class CardApplication {
     public CardApplication() {
     }
 
-    public String getBackGroundImageRight() {
+    public int getBackGroundImageRight() {
         return backGroundImageRight;
     }
 
-    public void setBackGroundImageRight(String backGroundImageRight) {
+    public void setBackGroundImageRight(int backGroundImageRight) {
         this.backGroundImageRight = backGroundImageRight;
     }
 
@@ -49,11 +49,11 @@ public class CardApplication {
         this.textApplicationRight = textApplicationRight;
     }
 
-    public String getBackGroundImageLeft() {
+    public int getBackGroundImageLeft() {
         return backGroundImageLeft;
     }
 
-    public void setBackGroundImageLeft(String backGroundImageLeft) {
+    public void setBackGroundImageLeft(int backGroundImageLeft) {
         this.backGroundImageLeft = backGroundImageLeft;
     }
 
